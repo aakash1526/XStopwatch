@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 function Country()
 {
-  const[timer,setTimer] = useState(0);
+  const[Timer,setTimer] = useState(0);
   const[isRunning,setIsRunning]= useState(false);
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
@@ -26,10 +26,10 @@ return (()=>{
   return (
     <>
     <h1>Stopwatch</h1>
-    <h2>Time :{formatTime(timer)}</h2>
+    <h2>Time : {formatTime(Timer)}</h2>
     <button onClick={()=>{
          setIsRunning((prev)=>!prev);
-    }}>{isRunning?"stop":"start"}</button>
+    }}>{isRunning?"Stop":"Start"}</button>
     <button onClick={()=>{
 
         setTimer(0);
