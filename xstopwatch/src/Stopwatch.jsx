@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function Country()
+function Stopwatch()
 {
   const[Timer,setTimer] = useState(0);
   const[isRunning,setIsRunning]= useState(false);
@@ -38,4 +38,4 @@ return (()=>{
     </>
   )
 }
-export default Country;
+export default Stopwatch;
