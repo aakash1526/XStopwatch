@@ -1,51 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
 
-const Stopwatch = () => {
-  const [time, setTime] = useState(0);
-  const [isRunning, setIsRunning] = useState(false);
-
-  useEffect(() => {
-    let interval = null;
-    if (isRunning) {
-      interval = setInterval(() => {
-        setTime(prevTime => prevTime + 1);
-      }, 1000);
-    } else if (!isRunning && time !== 0) {
-      clearInterval(interval);
-    }
-    return () => clearInterval(interval);
-  }, [isRunning, time]);
-
+function Country()
+{
+  const[timer,setTimer] = useState(0);
+  const[isRunning,setIsRunning]= useState(false);
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
     return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
   };
 
-  const handleStartStop = () => {
-    setIsRunning(!isRunning);
-  };
-
-  const handleReset = () => {
-    setIsRunning(false);
-    setTime(0);
-  };
-
+  useEffect(()=>{
+    let interval;
+    if(isRunning){
+    interval=setInterval(() =>{
+     setTimer((prev) =>prev+1);
+  },1000)
+}else{
+  clearInterval(interval);
+}
+return (()=>{
+  clearInterval(interval);
+})
+},[isRunning]);
   return (
-    <div>
-      <h1>Stopwatch</h1>
-      <div>
-        <h2>Time</h2>
-        <p>{formatTime(time)}</p>
-      </div>
-      <div>
-        <button onClick={handleStartStop}>
-          {isRunning ? 'Stop' : 'Start'}
-        </button>
-        <button onClick={handleReset}>Reset</button>
-      </div>
-    </div>
-  );
-};
+    <>
+    <h1>Stopwatch</h1>
+    <h2>Time :{formatTime(timer)}</h2>
+    <button onClick={()=>{
+         setIsRunning((prev)=>!prev);
+    }}>{isRunning?"stop":"start"}</button>
+    <button onClick={()=>{
 
-export default Stopwatch;
+        setTimer(0);
+        setIsRunning(false);
+    }}>Reset</button>
+    </>
+  )
+}
+export default Country;
